@@ -2,7 +2,8 @@
 Example of a Golang/gb project that is packaged using DEB
 
 # Usage
-Do this after cloning this repository.
+## Get f8-deb-helper
+Do this after cloning. This is mandatory.
 
 ```sh
 git submodule update --init
