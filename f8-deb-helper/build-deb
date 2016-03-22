@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+if [[ -z $NAME ]]; then
+  echo Please set the NAME varaible to the name of the service without f8-
+  exit 1
+fi
+
+DEB_DIR=deb_$NAME
+ARCH=$(dpkg --print-architecture)
+
+mkdebdir() {
+  if [ ! -d $DEB_DIR$1 ]; then
+    mkdir -p $DEB_DIR$1
+  fi
+}
+
+if [[ ! -d $DEB_DIR ]]; then
+  echo Please create $DEB_DIR directory first with DEBIAN inside it >&2
+  exit 1
+fi
+
+deb_version() {
+  grep Version $DEB_DIR/DEBIAN/control | awk '{ print $2 }'
+}
+
+if [[ ! -d $DEB_DIR/DEBIAN ]]; then
+  echo Please create DEBIAN directory in $DEB_DIR with control file >&2
+  exit 1
+fi
+
+VERSION=$(deb_version)
+
+# Include packaging instructions
+source package.sh
+
+dpkg-deb --build $DEB_DIR
+
+NEW_DEB=f8-${NAME}_${VERSION}_${ARCH}.deb
+if [[ ! -e $DEB_DIR.deb ]]; then
+  echo Failed to build $DEB_DIR >&2
+  exit 1
+fi
+mv $DEB_DIR.deb $NEW_DEB
+echo Produced $NEW_DEB
+

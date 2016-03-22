@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+APT_REPO=apt.fresh8.co
+ARCH=$(dpkg --print-architecture)
+
+LATEST=$(ls -t1 f8-$NAME*.deb 2>/dev/null | head -n 1)
+
+if [[ -z $LATEST ]]; then
+  echo No .deb files found for $NAME >&2
+  exit 1
+fi
+
+scp $LATEST $APT_REPO:/dists/fresh8/production/binary-$ARCH
