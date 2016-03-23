@@ -20,9 +20,10 @@ test: ## Runs go test with the -v verbose flag
 
 # Deb jazz
 build-deb: build ## Builds .deb file(s)
+	git clone https://github.com/lbn/f8-deb-helper
 	NAME=example ./f8-deb-helper/build-deb
 
-push-deb: build-deb ## Pushes .deb file(s) to our repository
+push-deb: ## Pushes .deb file(s) to our repository
 	NAME=example ./f8-deb-helper/push-deb
 
 version:
