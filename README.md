@@ -1,20 +1,11 @@
 # f8-gb-deb-example
-Example of a Golang/gb project that is packaged using DEB
+Example of a Golang/gb project that is packaged using DEB.
+
+See [this page](https://wiki.fresh8.co/wiki/Moving_a_project_to_deb) for instructions.
 
 # Usage
-## Get f8-deb-helper
-Do this after cloning. This is mandatory.
-
-```sh
-git submodule update --init
+Add these lines after running tests in Codeship
 ```
-
-## Updating your version of f8-deb-helper
-
-```sh
-cd f8-deb-helper
-git pull
-cd ..
+make build-deb
+make push-deb
 ```
-
-More instructions coming soon.
