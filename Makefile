@@ -20,7 +20,7 @@ test: ## Runs go test with the -v verbose flag
 
 # Deb jazz
 build-deb: build ## Builds .deb file(s)
-	@if [[ -d f8-deb-helper ]]; then rm -rf f8-deb-helper; fi
+	@if [ -d f8-deb-helper ]; then rm -rf f8-deb-helper; fi
 	git clone https://github.com/lbn/f8-deb-helper
 	NAME=example ./f8-deb-helper/build-deb
 
