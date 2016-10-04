@@ -6,7 +6,7 @@
 # mkdebdir - mkdir -p $DEB_DIR$1 if it does not exist
 
 mkdebdir /usr/local/bin
-mkdebdir /etc/$NAME
+mkdebdir /etc/f8-$NAME
 mkdebdir /etc/init
 
 cp ./bin/$NAME $DEB_DIR/usr/local/bin/f8-$NAME
